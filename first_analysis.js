@@ -1,5 +1,5 @@
 function autoReply() {
- var mail = "soccer030819@gmail.com,ystrmin0111@gmail.com"
+ var mail = "soccer030819@gmail.com"
  var sheet = SpreadsheetApp.getActiveSheet();
  var row = sheet.getLastRow();
  var day = sheet.getRange(row, 2).getValue();
@@ -9,24 +9,17 @@ function autoReply() {
 
   //得点者情報
  var spaceSeparator = /\s+/;  
- var H_scoreGetter1 = sheet.getRange(row, 6).getValue();
-  var H_scoreGetters1 = H_scoreGetter1.split(spaceSeparator);
- var H_scoreGetter2 = sheet.getRange(row, 7).getValue();
-  var H_scoreGetters2 = H_scoreGetter2.split(spaceSeparator);
- var H_scoreGetter3 = sheet.getRange(row, 8).getValue();
-  var H_scoreGetters3 = H_scoreGetter3.split(spaceSeparator);  
- var H_scoreGetter4 = sheet.getRange(row, 9).getValue();
-  var H_scoreGetters4 = H_scoreGetter4.split(spaceSeparator);  
+ var H_scoreGetters1 = sheet.getRange(row, 6).getValue();
+ var H_scoreGetters2 = sheet.getRange(row, 7).getValue();
+ var H_scoreGetters3 = sheet.getRange(row, 8).getValue();
+ var H_scoreGetters4 = sheet.getRange(row, 9).getValue();
   
- var A_scoreGetter1 = sheet.getRange(row, 10).getValue();
-  var A_scoreGetters1 = A_scoreGetter1.split(spaceSeparator);
- var A_scoreGetter2 = sheet.getRange(row, 11).getValue();
-  var A_scoreGetters2 = A_scoreGetter2.split(spaceSeparator);
- var A_scoreGetter3 = sheet.getRange(row, 12).getValue();
-  var A_scoreGetters3 = A_scoreGetter3.split(spaceSeparator);  
- var A_scoreGetter4 = sheet.getRange(row, 13).getValue();
-  var A_scoreGetters4 = A_scoreGetter4.split(spaceSeparator);  
+ var A_scoreGetters1 = sheet.getRange(row, 10).getValue();
+ var A_scoreGetters2 = sheet.getRange(row, 11).getValue();
+ var A_scoreGetters3 = sheet.getRange(row, 12).getValue();
+ var A_scoreGetters4 = sheet.getRange(row, 13).getValue();
 
+  
  //スコア
  var slashSeparator = "/"; 
  var H_score1 = sheet.getRange(row, 14).getValue();
@@ -489,16 +482,16 @@ function autoReply() {
  + "--------------------------------------\n\n"
  + "【得点者】\n"
  + Home_team + "\n"
- + "  1Q：" + H_scoreGetters1 + "\n"
- + "  2Q：" + H_scoreGetters2 + "\n"
- + "  3Q：" + H_scoreGetters3 + "\n"
- + "  4Q：" + H_scoreGetters4 + "\n\n"
+ + "[1Q]\n" + H_scoreGetters1 + "\n"
+ + "[2Q]\n" + H_scoreGetters2 + "\n"
+ + "[3Q]\n" + H_scoreGetters3 + "\n"
+ + "[4Q]\n" + H_scoreGetters4 + "\n\n"
   
  + Away_team + "\n"
- + "  1Q：" + A_scoreGetters1 + "\n"
- + "  2Q：" + A_scoreGetters2 + "\n"
- + "  3Q：" + A_scoreGetters3 + "\n"
- + "  4Q：" + A_scoreGetters4 + "\n\n\n"
+ + "[1Q]\n" + A_scoreGetters1 + "\n"
+ + "[2Q]\n" + A_scoreGetters2 + "\n"
+ + "[3Q]\n" + A_scoreGetters3 + "\n"
+ + "[4Q]\n" + A_scoreGetters4 + "\n\n\n"
  
  + "1. 得点\n"
  + Home_team + "\n"
