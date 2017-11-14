@@ -1,33 +1,35 @@
 function autoReply() {
- var mail = "soccer030819@gmail.com"
- var sheet = SpreadsheetApp.getActiveSheet();
- var row = sheet.getLastRow();
- var day = sheet.getRange(row, 2).getValue();
- var game_name = sheet.getRange(row, 3).getValue();
- var Home_team = sheet.getRange(row, 4).getValue();
- var Away_team = sheet.getRange(row, 5).getValue();
+ var mail = "soccer030819@gmail.com";  //メールアドレスの指定
+ var sheet = SpreadsheetApp.getActiveSheet();  //スプレットシート情報を取得
+ var row = sheet.getLastRow();  //最終行の取得
+ var day = sheet.getRange(row, 2).getValue();  //シートの最終行,２列目（日付情報）を変数dayに代入
+ var game_name = sheet.getRange(row, 3).getValue();  //試合名
+ var Home_team = sheet.getRange(row, 4).getValue();  //ホームチーム名
+ var Away_team = sheet.getRange(row, 5).getValue();  //アウェイチーム名
+ var spaceSeparator = /\s+/;  //スペースで文字列を分割するための変数指定
+ var slashSeparator = "/";  //スラッシュで文字列を分割するための変数指定  
 
-  //得点者情報
- var spaceSeparator = /\s+/;  
- var H_scoreGetters1 = sheet.getRange(row, 6).getValue();
- var H_scoreGetters2 = sheet.getRange(row, 7).getValue();
- var H_scoreGetters3 = sheet.getRange(row, 8).getValue();
- var H_scoreGetters4 = sheet.getRange(row, 9).getValue();
-  
- var A_scoreGetters1 = sheet.getRange(row, 10).getValue();
- var A_scoreGetters2 = sheet.getRange(row, 11).getValue();
- var A_scoreGetters3 = sheet.getRange(row, 12).getValue();
- var A_scoreGetters4 = sheet.getRange(row, 13).getValue();
+//得点者情報
+  //ホーム得点者情報
+ var H_scoreGetters1 = sheet.getRange(row, 6).getValue();  //1Q
+ var H_scoreGetters2 = sheet.getRange(row, 7).getValue();  //2Q
+ var H_scoreGetters3 = sheet.getRange(row, 8).getValue();  //3Q
+ var H_scoreGetters4 = sheet.getRange(row, 9).getValue();  //4Q
+  //アウェイ得点者情報
+ var A_scoreGetters1 = sheet.getRange(row, 10).getValue();  //1Q
+ var A_scoreGetters2 = sheet.getRange(row, 11).getValue();  //2Q
+ var A_scoreGetters3 = sheet.getRange(row, 12).getValue();  //3Q
+ var A_scoreGetters4 = sheet.getRange(row, 13).getValue();  //4Q
 
   
- //スコア
- var slashSeparator = "/"; 
- var H_score1 = sheet.getRange(row, 14).getValue();
-  var H_scores1 = H_score1.split(slashSeparator);
-   var H_score1_AT = parseFloat(H_scores1[0])
-   var H_score1_MF = parseFloat(H_scores1[1])
-   var H_score1_DF = parseFloat(H_scores1[2])
-   var H_score1_total = H_score1_AT + H_score1_MF + H_score1_DF
+//スコア
+  //ホーム
+ var H_score1 = sheet.getRange(row, 14).getValue();  //入力されたスコア情報を取得
+  var H_scores1 = H_score1.split(slashSeparator);  //H_score1の文字列をスラッシュで区切り配列として変数H_scores1に代入
+   var H_score1_AT = parseFloat(H_scores1[0]);  //配列の1番目の要素をFloat型に変換し変数H_score1_ATに代入
+   var H_score1_MF = parseFloat(H_scores1[1]);  //配列の2番目も同様
+   var H_score1_DF = parseFloat(H_scores1[2]);  //配列の3番目も同様
+   var H_score1_total = H_score1_AT + H_score1_MF + H_score1_DF;  //配列の要素全ての合計値を計算＝1Qホームの合計スコア
    
  var H_score2 = sheet.getRange(row, 15).getValue();
   var H_scores2 = H_score2.split(slashSeparator);
@@ -51,12 +53,12 @@ function autoReply() {
    var H_score4_total = H_score4_AT + H_score4_MF + H_score4_DF
    
    
- var H_totalScore_AT = H_score1_AT + H_score2_AT + H_score3_AT + H_score4_AT
- var H_totalScore_MF = H_score1_MF + H_score2_MF + H_score3_MF + H_score4_MF
+ var H_totalScore_AT = H_score1_AT + H_score2_AT + H_score3_AT + H_score4_AT  //1〜4QのATの合計
+ var H_totalScore_MF = H_score1_MF + H_score2_MF + H_score3_MF + H_score4_MF 
  var H_totalScore_DF = H_score1_DF + H_score2_DF + H_score3_DF + H_score4_DF
- var H_totalScore = H_score1_total + H_score2_total + H_score3_total + H_score4_total
+ var H_totalScore = H_score1_total + H_score2_total + H_score3_total + H_score4_total  //1〜4のトータルスコア
   
- 
+ //アウェイ
  var A_score1 = sheet.getRange(row, 18).getValue();
   var A_scores1 = A_score1.split(slashSeparator);
    var A_score1_AT = parseFloat(A_scores1[0])
@@ -572,6 +574,7 @@ function autoReply() {
  + "\n" 
  + "---------------------------------------\n"
  + "以上";
- 
- GmailApp.sendEmail(mail,title,mail_body);//メール送信
+
+  //メール送信
+ GmailApp.sendEmail(mail,title,mail_body);
 }
